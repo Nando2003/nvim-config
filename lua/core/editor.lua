@@ -3,7 +3,6 @@ local opt = vim.opt
 local g = vim.g
 
 vim.g.mapleader = " "
-
 local function set_mappings()
     local opts = {noremap = true, silent = true}
     local mapping = {
@@ -52,10 +51,15 @@ local function set_mappings()
         -- Navegação pelo histórico de pesquisa
         {"n", "<C-n>", "<Cmd>cnext<CR>", opts},  -- Próximo resultado da pesquisa
         {"n", "<C-p>", "<Cmd>cprev<CR>", opts},  -- Resultado anterior da pesquisa
-
-        -- {"n", "<leader>z", "u", opts},
-        -- {"i", "<C-z>", "u", opts},
+                
+        -- Ctrl + Z
         {"i", "<C-z>", "<Esc>:undo<CR>", opts},
+        
+        -- Ctrl + C
+        {"v", "<C-c>", [["+yy]], opts},
+
+        {"v", "<Tab>", ">gv", opts},
+        {"v", "<S-Tab>", "<gv", opts},
     }
 
     for _, val in pairs(mapping) do
@@ -74,7 +78,8 @@ local function set_options()
 
         encoding = "utf-8",
         fileencoding = "utf-8",
-        fileencoding = "utf-8",
+        fileencodings = "utf-8",
+        -- termencoding = "utf-8",
 
         backspace = "indent,eol,start",
         smartindent = true,
@@ -91,7 +96,9 @@ local function set_options()
         ignorecase = true,
         smartcase = true,
 
-        shell = "C:/Program Files/PowerShell/7/pwsh.exe",
+        shell = 'pwsh', 
+        shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command',       
+        shellxquote = '', 
         history = 1000,
 
         -- colorcolumn = "80,88,120",

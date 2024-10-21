@@ -19,5 +19,5 @@ require("lazy").setup({
 })
 
 vim.cmd('colorscheme catppuccin-latte')
-
+vim.cmd("language en_us.UTF-8")
 
